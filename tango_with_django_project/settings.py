@@ -25,6 +25,8 @@ SECRET_KEY = '9i8o!!^cgihtp-2^+3@_s&_a+9as!+5dhbuu!vi93l7r=iip(f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LOGIN_URL = 'rango:login'
+
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')

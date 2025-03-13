@@ -27,6 +27,8 @@ DEBUG = True
 
 LOGIN_URL = 'rango:login'
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
 ALLOWED_HOSTS = []
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')

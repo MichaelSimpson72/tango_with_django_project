@@ -5,7 +5,7 @@ from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-
+from datetime import datetime
 
 def show_category(request, category_name_slug):
     context_dict = {}
@@ -67,13 +67,16 @@ def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
     pages = Page.objects.order_by('-views')[:5]
 
+    visits = int(request.session.get('visits', 1))
+    request.session['visits'] = visits + 1
+
     context_dict = {
         'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!',
         'categories': category_list,
         'pages': pages
     }
 
-    return render(request, 'rango/index.html', context=context_dict)
+    return render(request, 'rango/index.html', {'visits': visits})
 
 def about(request):
     context_dict = {'aboutmessage': 'This tutorial has been put together by Mick Simpson'}
